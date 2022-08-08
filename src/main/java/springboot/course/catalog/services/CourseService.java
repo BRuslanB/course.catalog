@@ -20,11 +20,26 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    public CourseDTO getCourse(Long id){
+    public Course saveCourse(Course course){
+        return courseRepository.save(course);
+    }
+
+    public void deleteCourse(Course course){
+        courseRepository.delete(course);
+    }
+
+    public Course getCourse(Long id){
+        return courseRepository.findById(id).orElseThrow();
+    }
+    public CourseDTO getCourseDTO(Long id){
         return courseMapper.toDto(courseRepository.findById(id).orElseThrow());
     }
 
-    public List<CourseDTO> getAllCourses(){
+    public List<CourseDTO> getAllCoursesDTO(){
         return courseMapper.toDtoList(courseRepository.findAll());
+    }
+
+    public List<Course> getAllCourses(){
+        return courseRepository.findAll();
     }
 }

@@ -18,11 +18,11 @@ public class CourseController {
 
     @GetMapping
     public ResponseEntity<List<CourseDTO>> getAllCourses(){
-        return new ResponseEntity<>(courseService.getAllCourses(), HttpStatus.OK);
+        return new ResponseEntity<>(courseService.getAllCoursesDTO(), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<CourseDTO> getCourse(@PathVariable(name="id") Long id){
-        return new ResponseEntity<>(courseService.getCourse(id), HttpStatus.OK);
+        return new ResponseEntity<>(courseService.getCourseDTO(id), HttpStatus.OK);
     }
 }

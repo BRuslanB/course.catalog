@@ -18,11 +18,11 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> getAllCategories(){
-        return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.getAllCategoriesDTO(), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<CategoryDTO> getCourse(@PathVariable(name="id") Long id){
-        return new ResponseEntity<>(categoryService.getCategory(id), HttpStatus.OK);
+        return new ResponseEntity<>(categoryService.getCategoryDTO(id), HttpStatus.OK);
     }
 }

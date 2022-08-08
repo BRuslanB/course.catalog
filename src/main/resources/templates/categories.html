@@ -1,4 +1,3 @@
-<!--<!DOCTYPE html>-->
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -36,18 +35,18 @@
                         <td th:text="${cat.name}"></td>
                         <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
                             <button class="btn btn-primary btn-sm"
-                                    data-bs-toggle="modal" data-bs-target="#editCategoryModal"
+                                    data-bs-toggle="modal" th:data-bs-target="'#editCategoryModal' + ${cat.id}"
                                     th:text="DETAILS">
                             </button>
                         </td>
                         <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
                             <button class="btn btn-danger btn-sm"
-                                    data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
+                                    data-bs-toggle="modal" th:data-bs-target="'#deleteCategoryModal' + ${cat.id}"
                                     th:text="DELETE">
                             </button>
                         </td>
                         <!-- Modal Edit Category -->
-                        <div class="modal fade" id="editCategoryModal"
+                        <div class="modal fade" th:id="'editCategoryModal' + ${cat.id}"
                              data-bs-backdrop="static" data-bs-keyboard="false"
                              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -87,7 +86,7 @@
                             </div>
                         </div>
                         <!-- Modal Delete Category -->
-                        <div class="modal fade" id="deleteCategoryModal"
+                        <div class="modal fade" th:id="'deleteCategoryModal' + ${cat.id}"
                              data-bs-backdrop="static" data-bs-keyboard="false"
                              tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">

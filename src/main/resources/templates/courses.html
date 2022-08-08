@@ -1,4 +1,3 @@
-<!--<!DOCTYPE html>-->
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -38,22 +37,22 @@
                     <td th:text="${crs.id}"></td>
                     <td th:text="${crs.name}"></td>
                     <td th:text="${crs.description}"></td>
-                    <td th:text="${crs.priceValue}"></td>
-                    <td th:text="${crs.ratingValue}"></td>
+                    <td th:text="${crs.price}"></td>
+                    <td th:text="${crs.rating}"></td>
                     <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
                         <button class="btn btn-primary btn-sm"
-                                data-bs-toggle="modal" data-bs-target="#editCourseModal"
+                                data-bs-toggle="modal" th:data-bs-target="'#editCourseModal' + ${crs.id}"
                                 th:text="DETAILS">
                         </button>
                     </td>
                     <td sec:authorize="hasAnyRole('ROLE_ADMIN')">
                         <button class="btn btn-danger btn-sm"
-                                data-bs-toggle="modal" data-bs-target="#deleteCourseModal"
+                                data-bs-toggle="modal" th:data-bs-target="'#deleteCourseModal' + ${crs.id}"
                                 th:text="DELETE">
                         </button>
                     </td>
                     <!-- Modal Edit Course -->
-                    <div class="modal fade" id="editCourseModal"
+                    <div class="modal fade" th:id="'editCourseModal' + ${crs.id}"
                          data-bs-backdrop="static" data-bs-keyboard="false"
                          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -87,7 +86,7 @@
                                         <div class="row mt-2">
                                             <div class="col-12">
                                                 <textarea class="form-control" name="course_description" required
-                                                          th:value="${crs.description}"></textarea>
+                                                          th:text="${crs.description}"></textarea>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -99,7 +98,7 @@
                                             <div class="col-12">
                                                 <input type="number" class="form-control" name="course_price" required
                                                        min="0" step="0.01"
-                                                       th:value="${crs.priceValue}">
+                                                       th:value="${crs.price}">
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -111,20 +110,20 @@
                                             <div class="col-12">
                                                 <input type="number" class="form-control" name="course_rating" required
                                                        min="1" max="5" step="1"
-                                                       th:value="${crs.ratingValue}">
+                                                       th:value="${crs.rating}">
                                             </div>
                                         </div>
-<!--                                        <div class="row mt-3">-->
-<!--                                            <div class="col-12">-->
-<!--                                                <label th:text="AUTHOR"></label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="row mt-2">-->
-<!--                                            <div class="col-12">-->
-<!--                                                <input type="text" class="form-control" name="course_author" readonly-->
-<!--                                                       th:value="${crs.author.fullName}">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <div class="row mt-3">
+                                            <div class="col-12">
+                                                <label th:text="AUTHOR"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-12">
+                                                <input type="text" class="form-control" name="course_author" readonly
+                                                       th:value="${crs.author.fullName}">
+                                            </div>
+                                        </div>
                                         <div class="row mt-3">
                                             <div class="col-12">
                                                 <label th:text="GATEGORY"></label>
@@ -155,7 +154,7 @@
                         </div>
                     </div>
                     <!-- Modal Delete Course -->
-                    <div class="modal fade" id="deleteCourseModal"
+                    <div class="modal fade" th:id="'deleteCourseModal' + ${crs.id}"
                          data-bs-backdrop="static" data-bs-keyboard="false"
                          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
