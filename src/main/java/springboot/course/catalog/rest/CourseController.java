@@ -17,12 +17,12 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<List<CourseDTO>> getAllCourses(){
+    public ResponseEntity<List<CourseDTO>> getAllCoursesDTO(){
         return new ResponseEntity<>(courseService.getAllCoursesDTO(), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<CourseDTO> getCourse(@PathVariable(name="id") Long id){
+    public ResponseEntity<CourseDTO> getCourseDTO(@PathVariable(name="id") Long id){
         return new ResponseEntity<>(courseService.getCourseDTO(id), HttpStatus.OK);
     }
 }
